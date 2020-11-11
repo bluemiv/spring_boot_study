@@ -1,6 +1,6 @@
 package com.example.study.controller;
 
-import com.example.study.model.SearchParamVO;
+import com.example.study.model.SearchVo;
 import org.springframework.web.bind.annotation.*;
 
 @RestController // REST API Controller 라는 것을 프레임워크에 알려줌
@@ -25,14 +25,14 @@ public class GetController {
 
   // GET Method 통신
   @GetMapping("/getMultiParam")
-  public String getMultiParameter(SearchParamVO vo) { // Parameter가 여러개인 경우, VO 객체로 받을 수 도 있음.
+  public String getMultiParameter(SearchVo vo) { // Parameter가 여러개인 경우, VO 객체로 받을 수 도 있음.
     return vo.toString();
   }
 
   // GET Method 통신
   // return 값을 vo 객체로 해주면, Jackson 라이브러리가 알아서 JSON 형태로 변환하여 응답해준다.
   @GetMapping("/returnJson")
-  public SearchParamVO returnJson(SearchParamVO vo) {
+  public SearchVo returnJson(SearchVo vo) {
     return vo; // {"username":"tester","email":"tester@google.com","page":1}
   }
 }

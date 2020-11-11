@@ -1,6 +1,6 @@
 package com.example.study.model;
 
-public class SearchParamVO {
+public class SearchVo {
 
   private String username;
   private String email;
