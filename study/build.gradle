@@ -18,8 +18,11 @@ dependencies {
     compile 'mysql:mysql-connector-java'
 
     // lombok
-    compile 'org.projectlombok:lombok:1.18.16'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
