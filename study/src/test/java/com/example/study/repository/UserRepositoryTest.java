@@ -45,6 +45,23 @@ public class UserRepositoryTest extends StudyApplicationTests {
   }
 
   @Test
+  @Transactional
+  @Disabled
+  public void readWithOrderDetail() {
+    Optional<User> user = userRepository.findById(2L);
+
+    user.ifPresent(
+        selectUser -> {
+          selectUser
+              .getOrderDetailList()
+              .forEach(
+                  detail -> {
+                    log.info(detail.toString());
+                  });
+        });
+  }
+
+  @Test
   @Disabled
   public void update() {
     Optional<User> user = userRepository.findById(1L);

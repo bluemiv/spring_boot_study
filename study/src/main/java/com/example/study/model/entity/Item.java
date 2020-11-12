@@ -3,6 +3,7 @@ package com.example.study.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,8 @@ public class Item {
   private Integer price;
 
   private String content;
+
+  // 1:N (Item:OrderDetail)
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+  private List<OrderDetail> orderDetailList;
 }

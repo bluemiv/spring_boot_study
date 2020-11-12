@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"user", "item"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetail {
@@ -20,9 +20,13 @@ public class OrderDetail {
   @Column(nullable = false)
   private LocalDateTime orderAt;
 
+  // N:1 (OrderDetail:User)
+  @ManyToOne
   @Column(nullable = false)
-  private Long userId;
+  private User user;
 
+  // N:1 (OrderDetail:Item)
+  @ManyToOne
   @Column(nullable = false)
-  private Long itemId;
+  private Item item;
 }

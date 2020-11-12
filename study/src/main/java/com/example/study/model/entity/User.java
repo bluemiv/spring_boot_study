@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @ToString
@@ -32,4 +33,8 @@ public class User {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  // 1:N (User:OrderDetail)
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  private List<OrderDetail> orderDetailList;
 }
