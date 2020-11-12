@@ -1,9 +1,7 @@
 package com.example.FoodFighter.interfaces;
 
-import com.example.FoodFighter.domain.MenuItemRepository;
-import com.example.FoodFighter.domain.MenuItemRepositoryImpl;
+import com.example.FoodFighter.application.RestaurantService;
 import com.example.FoodFighter.domain.RestaurantRepository;
-import com.example.FoodFighter.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,11 +18,10 @@ class RestaurantControllerTests {
 
   @Autowired private MockMvc mvc;
 
-  @SpyBean(RestaurantRepositoryImpl.class)
+  @SpyBean(RestaurantService.class)
   private RestaurantRepository restaurantRepository;
 
-  @SpyBean(MenuItemRepositoryImpl.class)
-  private MenuItemRepository menuItemRepository;
+  @SpyBean private RestaurantService restaurantService;
 
   @Test
   public void list() throws Exception {
