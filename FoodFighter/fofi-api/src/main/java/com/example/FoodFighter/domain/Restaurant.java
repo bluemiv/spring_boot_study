@@ -1,10 +1,13 @@
 package com.example.FoodFighter.domain;
 
+import java.util.List;
+
 public class Restaurant {
 
   private Long id;
   private String name;
   private String address;
+  private List<MenuItem> menuItems;
 
   public Restaurant(String name) {
     this.name = name;
@@ -35,5 +38,17 @@ public class Restaurant {
 
   public String getInformation() {
     return name + " in " + address;
+  }
+
+  public List<MenuItem> getMenuItems() {
+    return menuItems;
+  }
+
+  public void addMenuItem(MenuItem menuItem) {
+    menuItems.add(menuItem);
+  }
+
+  public void setMenuItems(List<MenuItem> menuItems) {
+    this.menuItems = menuItems;
   }
 }
