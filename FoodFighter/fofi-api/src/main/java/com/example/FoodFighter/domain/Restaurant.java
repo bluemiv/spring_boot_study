@@ -1,5 +1,6 @@
 package com.example.FoodFighter.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
@@ -7,7 +8,7 @@ public class Restaurant {
   private Long id;
   private String name;
   private String address;
-  private List<MenuItem> menuItems;
+  private List<MenuItem> menuItems = new ArrayList<>();
 
   public Restaurant(String name) {
     this.name = name;
@@ -19,9 +20,9 @@ public class Restaurant {
   }
 
   public Restaurant(Long id, String name, String address) {
+    this.id = id;
     this.name = name;
     this.address = address;
-    this.id = id;
   }
 
   public Long getId() {
