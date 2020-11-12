@@ -1,21 +1,25 @@
 package com.example.FoodFighter.interfaces;
 
 import com.example.FoodFighter.domain.Restaurant;
+import com.example.FoodFighter.domain.RestaurantRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class RestaurantController {
 
+  private RestaurantRepository restaurantRepository = new RestaurantRepository();
+
   @GetMapping("/restaurant")
   public List<Restaurant> list() {
-    List<Restaurant> restaurants = new ArrayList<>();
+    return restaurantRepository.findAll();
+  }
 
-    Restaurant restaurant = new Restaurant(1004L, "My Food House", "Seoul");
-    restaurants.add(restaurant);
-    return restaurants;
+  @GetMapping("/restaurant/{id}")
+  public Restaurant detail(@PathVariable("id") Long id) {
+    return restaurantRepository.findById(id);
   }
 }
