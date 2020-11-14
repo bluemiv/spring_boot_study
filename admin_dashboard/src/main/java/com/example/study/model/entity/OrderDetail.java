@@ -39,4 +39,10 @@ public class OrderDetail {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  @Column(nullable = false)
+  private Long orderGroupId;
+
+  @Column(nullable = false)
+  private Long itemId;
 }
