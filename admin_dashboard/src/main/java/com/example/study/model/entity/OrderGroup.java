@@ -48,4 +48,7 @@ public class OrderGroup {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  @Column(nullable = false)
+  private Long userId;
 }
