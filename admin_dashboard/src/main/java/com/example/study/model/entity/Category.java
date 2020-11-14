@@ -6,32 +6,21 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "category")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class Category {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long Id;
 
-  @Column(nullable = false, unique = true)
-  private String account;
-
   @Column(nullable = false)
-  private String password;
+  private String type;
 
-  private String status;
-
-  private String email;
-
-  private String phoneNumber;
-
-  private LocalDateTime registeredAt;
-
-  private LocalDateTime unregisteredAt;
+  private String title;
 
   @Column(nullable = false)
   private LocalDateTime createdAt;
