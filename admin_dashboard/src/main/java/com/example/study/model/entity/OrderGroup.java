@@ -3,16 +3,16 @@ package com.example.study.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "order_group")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "item")
-public class Item {
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public class OrderGroup {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,19 +21,21 @@ public class Item {
   private String status;
 
   @Column(nullable = false)
-  private String name;
+  private String orderType;
 
-  @Column(nullable = false)
-  private String title;
+  private String revAddress;
 
-  @Column(nullable = false)
-  private Integer price;
+  private String revName;
 
-  private String brandName;
+  private String paymentType;
 
-  private LocalDateTime registeredAt;
+  private BigDecimal totalPrice;
 
-  private LocalDateTime unregisteredAt;
+  private Integer totalQuantity;
+
+  private LocalDateTime orderAt;
+
+  private LocalDateTime arrivalDate;
 
   @Column(nullable = false)
   private LocalDateTime createdAt;

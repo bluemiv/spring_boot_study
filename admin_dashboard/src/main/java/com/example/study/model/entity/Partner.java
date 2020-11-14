@@ -5,31 +5,31 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "partner")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "item")
-public class Item {
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public class Partner {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long Id;
+
+  private String name;
 
   private String status;
 
-  @Column(nullable = false)
-  private String name;
+  private String address;
 
-  @Column(nullable = false)
-  private String title;
+  private String callCenter;
 
-  @Column(nullable = false)
-  private Integer price;
+  private String partnerNumber;
 
-  private String brandName;
+  private String businessNumber;
+
+  private String ceoName;
 
   private LocalDateTime registeredAt;
 

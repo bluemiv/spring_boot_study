@@ -1,14 +1,18 @@
 package com.example.study.model.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "order_detail")
 @Getter
 @Setter
-@ToString(exclude = {"user", "item"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetail {
@@ -17,16 +21,22 @@ public class OrderDetail {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false)
-  private LocalDateTime orderAt;
+  private String status;
 
-  // N:1 (OrderDetail:User)
-  @ManyToOne
   @Column(nullable = false)
-  private User user;
+  private LocalDateTime arrivalDate;
 
-  // N:1 (OrderDetail:Item)
-  @ManyToOne
+  private Integer quantity;
+
+  private BigDecimal totalPrice;
+
   @Column(nullable = false)
-  private Item item;
+  private LocalDateTime createdAt;
+
+  @Column(nullable = false)
+  private String createdBy;
+
+  private LocalDateTime updatedAt;
+
+  private String updatedBy;
 }
