@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,90 +14,40 @@ import java.util.Optional;
 @Slf4j
 public class UserRepositoryTest extends StudyApplicationTests {
 
-  @Autowired // 의존성 주입 (DI, Dependency Injection)
-  private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
   @Test
   @Disabled
   public void create() {
-    User user =
-        User.builder()
-            .account("Test User 03")
-            .email("testuser03@google.com")
-            .phoneNumber("010-1234-5678")
-            .createdAt(LocalDateTime.now())
-            .createdBy("admin")
-            .build();
-    User newUser = userRepository.save(user);
-    log.info(newUser.toString());
+    String account = "Test01";
+    String password = "1234";
+    String status = "REGISTERED";
+    String email = "test01@google.com";
+    String phoneNumber = "010-1234-5678";
+    LocalDateTime now = LocalDateTime.now();
+    String createdBy = "AdminServer";
+
+    User user = new User();
+    user.setAccount(account);
+    user.setPassword(password);
+    user.setStatus(status);
+    user.setEmail(email);
+    user.setPhoneNumber(phoneNumber);
+    user.setCreatedAt(now);
+    user.setCreatedBy(createdBy);
+
+    User createdUser = userRepository.save(user);
+    Assertions.assertNotNull(createdBy);
+    Assertions.assertEquals(account, createdUser.getAccount());
+    Assertions.assertEquals(password, createdUser.getPassword());
   }
 
   @Test
-  @Disabled
   public void read() {
-    Optional<User> user = userRepository.findById(2L);
-
-    user.ifPresent(
-        selectUser -> { // ifPresent: 값이 있다면, 가져옴
-          log.info(selectUser.toString());
-        });
-  }
-
-  @Test
-  @Transactional
-  @Disabled
-  public void readWithOrderDetail() {
-    Optional<User> user = userRepository.findById(2L);
-
-    user.ifPresent(
-        selectUser -> {
-          selectUser
-              .getOrderDetailList()
-              .forEach(
-                  detail -> {
-                    log.info(detail.toString());
-                  });
-        });
-  }
-
-  @Test
-  @Disabled
-  public void update() {
-    Optional<User> user = userRepository.findById(1L);
-
-    user.ifPresent(
-        selectUser -> {
-          User newUser =
-              User.builder()
-                  .id(selectUser.getId())
-                  .account(selectUser.getAccount())
-                  .phoneNumber(selectUser.getPhoneNumber())
-                  .email("updatedEmail@google.com")
-                  .createdAt(selectUser.getCreatedAt())
-                  .createdBy(selectUser.getCreatedBy())
-                  .updatedAt(LocalDateTime.now())
-                  .updatedBy("TestUser02")
-                  .build();
-          userRepository.save(newUser);
-        });
-  }
-
-  @Test
-  @Disabled
-  @Transactional
-  public void delete() {
-    Optional<User> user = userRepository.findById(1L);
-    // User가 있어야 함
+    String phoneNumber = "010-1234-5678";
+    Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
     Assertions.assertTrue(user.isPresent());
 
-    // 있다면 삭제
-    user.ifPresent(
-        selectUser -> {
-          userRepository.deleteById(selectUser.getId());
-        });
-
-    // 지워졌는지 확인
-    Optional<User> deletedUser = userRepository.findById(1L);
-    Assertions.assertFalse(deletedUser.isPresent());
+    Assertions.assertEquals(phoneNumber, user.get().getPhoneNumber());
   }
 }

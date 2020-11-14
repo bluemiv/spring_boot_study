@@ -19,12 +19,6 @@ public class ItemRepositoryTest extends StudyApplicationTests {
   @Disabled
   public void create() {
     Item item = new Item();
-    item.setName("노트북");
-    item.setContent("삼성 노트북");
-    item.setPrice(1000000);
-
-    Item newItem = itemRepository.save(item);
-    Assertions.assertNotNull(newItem);
   }
 
   @Test
