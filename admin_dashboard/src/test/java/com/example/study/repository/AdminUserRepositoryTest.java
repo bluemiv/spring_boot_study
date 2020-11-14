@@ -19,26 +19,30 @@ public class AdminUserRepositoryTest extends StudyApplicationTests {
   @Test
   @Disabled
   public void create() {
-    String account = "AdminUser01";
+    String account = "AdminUser02";
     String password = "1234";
     String status = "REGISTERED";
     String role = "PARTNER";
     LocalDateTime now = LocalDateTime.now();
-    String createdBy = "AdminServer";
 
     AdminUser adminUser = new AdminUser();
     adminUser.setAccount(account);
     adminUser.setPassword(password);
     adminUser.setStatus(status);
     adminUser.setRole(role);
-    adminUser.setCreatedAt(now);
     adminUser.setPasswordUpdatedAt(now);
-    adminUser.setCreatedBy(createdBy);
+    //    adminUser.setCreatedAt(now);
+    //    adminUser.setCreatedBy(createdBy);
 
     AdminUser createdAdminUser = adminUserRepository.save(adminUser);
     Assertions.assertNotNull(createdAdminUser);
     Assertions.assertEquals(account, createdAdminUser.getAccount());
     Assertions.assertEquals(password, createdAdminUser.getPassword());
+
+    createdAdminUser.setAccount("AdminUser03");
+    createdAdminUser = adminUserRepository.save(createdAdminUser);
+    Assertions.assertNotNull(createdAdminUser);
+    Assertions.assertEquals("AdminUser03", createdAdminUser.getAccount());
   }
 
   @Test

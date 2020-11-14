@@ -1,11 +1,17 @@
 package com.example.study.model.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "admin_user")
 @Getter
 @Setter
@@ -39,13 +45,15 @@ public class AdminUser {
 
   private LocalDateTime unregisteredAt;
 
+  @CreatedDate
   @Column(nullable = false)
   private LocalDateTime createdAt;
 
+  @CreatedBy
   @Column(nullable = false)
   private String createdBy;
 
-  private LocalDateTime updatedAt;
+  @LastModifiedDate private LocalDateTime updatedAt;
 
-  private String updatedBy;
+  @LastModifiedBy private String updatedBy;
 }

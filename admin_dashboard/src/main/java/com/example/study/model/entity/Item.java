@@ -1,6 +1,11 @@
 package com.example.study.model.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "item")
 public class Item {
 
@@ -38,15 +44,17 @@ public class Item {
 
   private LocalDateTime unregisteredAt;
 
+  @CreatedDate
   @Column(nullable = false)
   private LocalDateTime createdAt;
 
+  @CreatedBy
   @Column(nullable = false)
   private String createdBy;
 
-  private LocalDateTime updatedAt;
+  @LastModifiedDate private LocalDateTime updatedAt;
 
-  private String updatedBy;
+  @LastModifiedBy private String updatedBy;
 
   // Item N : 1 Partner
   @ManyToOne
