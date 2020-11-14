@@ -1,6 +1,7 @@
 package com.example.study.model.entity;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@Accessors(chain = true)
 @ToString(exclude = {"partnerList"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

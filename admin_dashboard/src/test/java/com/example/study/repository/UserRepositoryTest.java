@@ -31,14 +31,15 @@ public class UserRepositoryTest extends StudyApplicationTests {
     LocalDateTime now = LocalDateTime.now();
     String createdBy = "AdminServer";
 
-    User user = new User();
-    user.setAccount(account);
-    user.setPassword(password);
-    user.setStatus(status);
-    user.setEmail(email);
-    user.setPhoneNumber(phoneNumber);
-    user.setCreatedAt(now);
-    user.setCreatedBy(createdBy);
+    User user =
+        new User()
+            .setAccount(account)
+            .setPassword(password)
+            .setStatus(status)
+            .setEmail(email)
+            .setPhoneNumber(phoneNumber)
+            .setCreatedAt(now)
+            .setCreatedBy(createdBy);
 
     User createdUser = userRepository.save(user);
     Assertions.assertNotNull(createdBy);
