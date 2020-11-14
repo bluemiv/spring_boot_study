@@ -1,7 +1,10 @@
 package com.example.study.controller;
 
 import com.example.study.model.SearchVo;
+import com.example.study.model.network.Header;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController // REST API Controller 라는 것을 프레임워크에 알려줌
 @RequestMapping("api") // localhost:8080/api 형태로 매핑 됨
@@ -34,5 +37,15 @@ public class GetController {
   @GetMapping("/returnJson")
   public SearchVo returnJson(SearchVo vo) {
     return vo; // {"username":"tester","email":"tester@google.com","page":1}
+  }
+
+  @GetMapping("/header")
+  public Header getHeader() {
+    return new Header()
+        .builder()
+        .transactionTime(LocalDateTime.now().toString())
+        .resultCode("OK")
+        .description("테스트를 위한 API")
+        .build();
   }
 }
