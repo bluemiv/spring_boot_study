@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "user")
 @Getter
 @Setter
+@Builder
 @ToString(exclude = {"orderGroupList"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

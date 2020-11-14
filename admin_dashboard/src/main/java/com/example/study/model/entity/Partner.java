@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "partner")
 @Getter
 @Setter
+@Builder
 @ToString(exclude = {"itemList", "category"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

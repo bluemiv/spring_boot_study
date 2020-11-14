@@ -11,14 +11,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
-@ToString(exclude = {"orderDetailList", "partner"})
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "item")
+@Getter
+@Setter
+@Builder
+@ToString(exclude = {"orderDetailList", "partner"})
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
 
   @Id

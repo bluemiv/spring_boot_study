@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "order_detail")
 @Getter
 @Setter
+@Builder
 @ToString(exclude = {"orderGroup", "item"})
 @NoArgsConstructor
 @AllArgsConstructor

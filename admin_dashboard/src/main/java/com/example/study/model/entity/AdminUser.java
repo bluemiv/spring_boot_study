@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "admin_user")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class AdminUser {
