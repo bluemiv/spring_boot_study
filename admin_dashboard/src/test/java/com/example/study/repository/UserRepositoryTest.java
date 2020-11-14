@@ -1,6 +1,9 @@
 package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
+import com.example.study.model.entity.Category;
+import com.example.study.model.entity.Item;
+import com.example.study.model.entity.Partner;
 import com.example.study.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +11,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -43,11 +47,38 @@ public class UserRepositoryTest extends StudyApplicationTests {
   }
 
   @Test
+  @Transactional
   public void read() {
     String phoneNumber = "010-1234-5678";
-    Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
+    Optional<User> user = userRepository.findFirstByPhoneNumberOrderByIdDesc(phoneNumber);
     Assertions.assertTrue(user.isPresent());
 
     Assertions.assertEquals(phoneNumber, user.get().getPhoneNumber());
+    user.get()
+        .getOrderGroupList()
+        .forEach(
+            orderGroup -> {
+              log.info(orderGroup.toString());
+              Assertions.assertNotNull(orderGroup);
+              orderGroup
+                  .getOrderDetailList()
+                  .forEach(
+                      orderDetail -> {
+                        log.info(orderDetail.toString());
+                        Assertions.assertNotNull(orderDetail);
+
+                        Item item = orderDetail.getItem();
+                        Assertions.assertNotNull(item);
+                        log.info(item.toString());
+
+                        Partner partner = item.getPartner();
+                        Assertions.assertNotNull(partner);
+                        log.info(partner.toString());
+
+                        Category category = partner.getCategory();
+                        Assertions.assertNotNull(category);
+                        log.info(category.toString());
+                      });
+            });
   }
 }

@@ -1,9 +1,6 @@
 package com.example.study.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "order_detail")
 @Getter
 @Setter
+@ToString(exclude = {"orderGroup", "item"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetail {
@@ -40,9 +38,13 @@ public class OrderDetail {
 
   private String updatedBy;
 
-  @Column(nullable = false)
-  private Long orderGroupId;
+  // OrderDetail N : 1 OrderGroup
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "order_group_id")
+  private OrderGroup orderGroup;
 
-  @Column(nullable = false)
-  private Long itemId;
+  // OrderDetail N : 1 Item
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "item_id")
+  private Item item;
 }

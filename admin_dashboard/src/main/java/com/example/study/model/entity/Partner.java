@@ -4,18 +4,20 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "partner")
 @Getter
 @Setter
+@ToString(exclude = {"itemList", "category"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Partner {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
 
   private String name;
 
@@ -45,6 +47,11 @@ public class Partner {
 
   private String updatedBy;
 
-  @Column(nullable = false)
-  private Long categoryId;
+  // Partner 1 : N Item
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner")
+  private List<Item> itemList;
+
+  // Partner N : 1 Category
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Category category;
 }

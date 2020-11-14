@@ -5,11 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "order_group")
 @Getter
 @Setter
+@ToString(exclude = {"user", "orderDetailList"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderGroup {
@@ -49,6 +51,12 @@ public class OrderGroup {
 
   private String updatedBy;
 
-  @Column(nullable = false)
-  private Long userId;
+  // OrderGroup 1 : N User
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  // OrderGroup 1 : N OrderDetail
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
+  private List<OrderDetail> orderDetailList;
 }

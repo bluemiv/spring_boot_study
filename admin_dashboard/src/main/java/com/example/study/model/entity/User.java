@@ -4,18 +4,20 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 @Getter
 @Setter
+@ToString(exclude = {"orderGroupList"})
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
 
   @Column(nullable = false, unique = true)
   private String account;
@@ -44,4 +46,8 @@ public class User {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  // User 1 : N OrderGroup
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  private List<OrderGroup> orderGroupList;
 }

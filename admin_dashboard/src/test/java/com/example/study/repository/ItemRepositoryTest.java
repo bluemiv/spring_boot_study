@@ -38,7 +38,7 @@ class ItemRepositoryTest extends StudyApplicationTests {
     item.setRegisteredAt(registeredAt);
     item.setCreatedAt(createdAt);
     item.setCreatedBy(createdBy);
-    item.setPartnerId(partnerId);
+    //    item.setPartnerId(partnerId);
 
     Item createdItem = itemRepository.save(item);
     Assertions.assertNotNull(createdItem);

@@ -19,8 +19,8 @@ public class OrderDetailRepositoryTest extends StudyApplicationTests {
   @Disabled
   public void create() {
     OrderDetail orderDetail = new OrderDetail();
-    orderDetail.setOrderGroupId(1L);
-    orderDetail.setItemId(1L);
+    //    orderDetail.setOrderGroupId(1L);
+    //    orderDetail.setItemId(1L);
     orderDetail.setStatus("WAITING");
     orderDetail.setCreatedAt(LocalDateTime.now());
     orderDetail.setCreatedBy("AdminServer");
