@@ -6,12 +6,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "admin")
+@Table(name = "admin_user")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class Admin {
+public class AdminUser {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
