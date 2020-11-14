@@ -26,6 +26,8 @@ public class Item {
   @Column(nullable = false)
   private String title;
 
+  private String content;
+
   @Column(nullable = false)
   private Integer price;
 
@@ -44,4 +46,7 @@ public class Item {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  @Column(nullable = false)
+  private Long partnerId;
 }
