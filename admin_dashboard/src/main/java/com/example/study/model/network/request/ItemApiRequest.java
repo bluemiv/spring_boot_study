@@ -2,6 +2,7 @@ package com.example.study.model.network.request;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -9,21 +10,24 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserApiRequest {
-
+public class ItemApiRequest {
   private Long id;
-
-  private String account;
-
-  private String password;
 
   private String status;
 
-  private String email;
+  private String name;
 
-  private String phoneNumber;
+  private String title;
+
+  private String content;
+
+  private BigDecimal price;
+
+  private String brandName;
 
   private LocalDateTime registeredAt;
 
   private LocalDateTime unregisteredAt;
+
+  private Long partnerId;
 }
